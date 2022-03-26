@@ -13,8 +13,10 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ovpn-data:/app/ovpn/config
     environment:
-      - USERNAME=<nordvpn_username>
-      - PASSWORD=<nordvpn_password>
+      - USERNAME=
+      - PASSWORD=
+      - COUNTRY=
+      - SERVER=
       - LOCAL_NETWORK=192.168.1.0/24
     networks:
       - default
