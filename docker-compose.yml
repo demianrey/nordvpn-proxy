@@ -1,7 +1,8 @@
 version: '3'
 services:
   vpn:
-    image: jeroenslot/nordvpn-proxy:latest
+    image: mi-nordvpn-proxy
+    container_name: nordvpn
     cap_add:
       - NET_ADMIN
     devices:
@@ -12,17 +13,21 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ovpn-data:/app/ovpn/config
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 1m
     environment:
       - USERNAME=
       - PASSWORD=
-      - COUNTRY=
-      - SERVER=
-      - LOCAL_NETWORK=192.168.1.0/24
+      - COUNTRY=MX
+#      - SERVER=mx110.nordvpn.com
+      - LOCAL_N6ETWORK=192.168.1.0/24
     networks:
       - default
     ports:
       - 8118:8118
-    restart: always
+    restart: "no"
 
 volumes:
   ovpn-data:
